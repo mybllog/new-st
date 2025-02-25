@@ -196,7 +196,7 @@ const Home = ({isVisible}) => {
               role="region"
               aria-label={`Slide ${index + 1}`}
             >
-              <p className="text-sm sm:text-lg md:text-2xl font-bold mb-2 text-[#ec3237]">
+              <p className="text-sm sm:text-lg md:text-2xl font-bold mb-4 md:mb-2 text-[#ec3237]">
                 {Currentscripture.title}
               </p>
               <h1 className="text-lg sm:text-2xl md:text-5xl font-bold">
@@ -387,7 +387,7 @@ const Home = ({isVisible}) => {
       />
 
       {/* Overlay Content */}
-      <div className="absolute top-2/3 md:top-3/4 w-11/12 md:w-10/12 max-w-[500px] bg-white px-6 py-4 rounded-br-[40px] md:rounded-br-[60px] shadow-lg text-center">
+      <div className="absolute top-1/3 md:top-3/4 w-11/12 md:w-10/12 max-w-[500px] bg-white px-6 py-4 rounded-br-[40px] md:rounded-br-[60px] shadow-lg text-center">
         <h1 className="font-bold text-lg md:text-2xl text-gray-800">
           Youth Worship
         </h1>
