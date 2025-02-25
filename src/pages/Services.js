@@ -18,7 +18,7 @@ import { blue } from '@mui/material/colors';
 import { Button, Paper } from '@mui/material';
 import { People } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
-
+import baptism from '../assets/img/baptistsm.jpg'
 const Services = () => {
   const [activeText, setActiveText] = useState(null);
 
@@ -52,7 +52,7 @@ const Services = () => {
   
 
   const events= [
-    { id:1,title: "Baptismal class", image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiQ_fdZB3DgTZznqq6A8qNkhvDjMdgms3HNg&s', alt:'Baptismal Class Commences',  description:'Feb 17 2025', link:null},
+    { id:1,title: "Baptismal class", image: baptism, alt:'Baptismal Class Commences',  description:'Feb 17 2025', link:null},
     {id:2, title: "Night Vigil", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3QBTalK_4ThiCAIxkLW1SRnnERl3sVyDhnw&s',alt:'Church Night Vigil', description:'feb 28 2025',link:null},
     {id:3, title: "Agency Leaders, Elders and Church Worker Retreat", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh09-72d4Nvm8iorRhxuR8NQPZvfTgHb54eQ&s', alt:'Agency Leaders, Elders and Church Worker Retreat', description:'28 Feb – 1 Mar 2025',link:'/retreat'},
   ];
