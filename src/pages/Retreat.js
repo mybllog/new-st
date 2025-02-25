@@ -77,18 +77,26 @@ const Retreats = () => {
 
       {/* Hero Section */}
       <section className="relative w-full bg-black text-white text-center font-Fira">
-  <img
-    src={image1}
-    alt="Hero section showcasing Manifold Computers"
-    className="w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[30rem] object-cover"
-  />
+      <img
+  src={image1}
+  alt="Hero section showcasing Manifold Computers"
+  className="w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[30rem] object-cover brightness-105 contrast-125 saturate-110 filter"
+/>
   <p className="absolute inset-0 flex items-center justify-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
   Church Workers Retreat
   </p>
 </section>
 
 
-<section className=' p-5'>
+<section className=' p-5'
+ style={{
+    background: `
+      linear-gradient(25deg, #ffff 25%, #0000 15%, #0000 75%, #0000 65%, #0000),
+      linear-gradient(-25deg, #ffff 25%, #0000 15%, #0000 75%, #0000 65%, #000)
+    `,
+    backgroundSize: '10px 20px', // Adjust diamond size here
+    backgroundColor: '#ffff', // Fallback background color
+  }}>
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-16">
         {Workers.map((Retreat, index) => (
           <motion.div

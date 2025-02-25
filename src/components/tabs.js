@@ -129,7 +129,7 @@ export default function CenteredTabs() {
 
       {/* Content Section */}
       <div className="text-center lg:text-left font-Fira space-y-4 leading-8">
-        <p className="text-[#ec3237] font-bold text-lg">{item.label}</p>
+        <p className="text-white font-bold text-lg">{item.label}</p>
 
         {typeof item.content === "string" ? (
           <p className="text-xl text-gray-800">{item.content}</p>

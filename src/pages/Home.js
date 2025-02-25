@@ -45,6 +45,36 @@ import Modal from "react-modal"
 
 
 const Home = ({isVisible}) => {
+
+  const [showBank , setShowBank] =useState(false)
+
+
+  const bankPopup =()=>{
+    const isMobile = /iPhone|iPod|iPad|Andriod/i.test(navigator.userAgent);
+
+    if(isMobile){
+      window.location.href="https://play.google.com/store/apps/details?id=com.firstbank.firstmobile"
+    }else {
+      setShowBank(true)
+    }
+  }
+ 
+  const bankSelection =(bank)=>{
+    switch(bank){
+    case 'First Bank':
+      window.open("https://play.google.com/store/apps/details?id=com.firstbank.firstmobile");
+      break
+      case 'Uba Bank':
+        window.open("https://play.google.com/store/apps/details?id=com.uba.vericash");
+        break
+        case 'Zenith bank':
+          window.open("https://play.google.com/store/apps/details?id=com.zenithBank.eazymoney");
+          break
+          default:
+          break;
+    }
+  } 
+
   /*const settings = {
     //dots: true,
     infinite: true,
@@ -91,17 +121,7 @@ const Home = ({isVisible}) => {
       text3:'Experience God’s love and grace in a welcoming community where faith grows, hope thrives, and everyone is cherished.',
 
     },
-    {
-      id:2,
-     name:'Now it came to pass, afterward, that He went through every city and village, preaching and bringing the glad tidings of the kingdom of God. And the twelve were with Him, and certain women who had been healed of evil spirits and infirmities... provided for Him from their substance',
-      text4:'Luke 8:1-3 NKJV'
-    },
-
-    {
-      id:3,
-     name:' The LORD is known by the judgment which He executeth: The wicked is snared in the work of His own hands. Higgaion',
-     text4:'PSALM 9:16'
-    }
+   
   ]
   
   const onlines = [
@@ -161,10 +181,15 @@ const Home = ({isVisible}) => {
 
         <section aria-label="Hero Slider" className="w-full">
       {images.map((item, index) => (
-        <article key={index} className="relative w-full h-80 sm:h-96 md:h-[500px] lg:h-[600px]">
+        <article key={index} className="relative w-full h-80 sm:h-96 md:h-[500px] lg:h-[600px]  filter drop-shadow-lg"
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)', // Curved triangle shape
+          filter:'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.8))'
+          
+        }}>
           <video
             src={item.video}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-110"
             loading="lazy"
             autoPlay
             loop
@@ -196,7 +221,8 @@ const Home = ({isVisible}) => {
               role="region"
               aria-label={`Slide ${index + 1}`}
             >
-              <p className="text-sm sm:text-lg md:text-2xl font-bold mb-2 my-4 text-[#ec3237]">
+             <div className=' leading-3'>
+             <p className="text-sm sm:text-base md:text-base font-bold mb-2 my-4 text-[#ec3237]">
                 {Currentscripture.title}
               </p>
               <h1 className="text-lg sm:text-2xl md:text-5xl font-bold">
@@ -204,8 +230,9 @@ const Home = ({isVisible}) => {
               </h1>
               <p className="text-sm sm:text-base">{Currentscripture.text3}</p>
               <p className="text-sm sm:text-base">{Currentscripture.name}</p>
-              <p className="text-sm sm:text-base">{Currentscripture.text4}</p>
 
+
+             </div>
               <div className="flex flex-wrap justify-center gap-4">
               
                   <Button
@@ -215,9 +242,8 @@ const Home = ({isVisible}) => {
                       backgroundColor: '#ec3237',
                       '&:hover': { backgroundColor: '#c1272d' },
                       color: 'white',
-                      borderRadius:'100%',
-                      paddingX: '20px',
-                      paddingY: '10px',
+                      borderRadius: '8px',
+                     
                     }}
                     aria-label="Contact Us for Consultation"
                   >
@@ -233,9 +259,8 @@ const Home = ({isVisible}) => {
                       backgroundColor: 'white',
                       '&:hover': { backgroundColor: '#f3f3f3' },
                       color: '#ec3237',
-                      borderRadius:'100%',
-                      paddingX: '20px',
-                      paddingY: '10px',
+                      borderRadius: '8px',
+    
                     }}
                     aria-label="Learn More"
                   >
@@ -255,29 +280,22 @@ const Home = ({isVisible}) => {
 
         {/* Consultation Section */}
         <motion.section
-  className="flex flex-col md:flex-row w-full py-16 md:py-20"
+  className="flex flex-col md:flex-row w-full py-16 md:py-32 px-6 md:px-12"
   aria-labelledby="consultation-heading"
 >
   {/* Image Section */}
   <motion.div
-  initial={{ x: '-100vw' }}
-      animate={{ x: 0 }}
-      exit={{ x: '100vw' }}
-      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-   className="flex flex-col md:flex-row w-full md:w-1/2 space-y-6 md:space-y-0 relative font-Fira">
-    <div className="rounded-br-[100px] overflow-hidden w-full md:w-10/12">
+    initial={{ x: '-100vw' }}
+    animate={{ x: 0 }}
+    exit={{ x: '100vw' }}
+    transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+    className="flex w-full md:w-1/2 items-center justify-center" // Center the image
+  >
+    <div className="rounded-br-[100px] overflow-hidden w-full md:w-11/12 lg:w-10/12">
       <img
         src={church1}
         alt="church"
-        className="w-full h-auto object-cover  brightness-110 rounded-br-[150px]"
-        loading="lazy"
-      />
-    </div>
-    <div className="absolute top-1/2 left-1/4 transform -translate-y-10  brightness-110  -translate-x-28">
-      <img
-        src={church1}
-        alt="Church"
-        className="w-8/12 md:w-10/12 object-cover rounded-br-[100px]"
+        className="w-full h-auto object-cover brightness-110 rounded-br-[150px]"
         loading="lazy"
       />
     </div>
@@ -285,7 +303,7 @@ const Home = ({isVisible}) => {
 
   {/* Text Content Section */}
   <div
-    className="bg-white w-full md:w-1/2 px-6 py-8 md:px-12 md:py-10"
+    className="bg-white w-full md:w-1/2 px-6 py-8 md:px-12 md:py-10 flex flex-col justify-center" // Center text vertically
     role="region"
   >
     <h2
@@ -295,7 +313,7 @@ const Home = ({isVisible}) => {
       ABOUT US
     </h2>
 
-    <h1 className="font-bold text-4xl  text-black mb-4">
+    <h1 className="font-bold text-4xl text-black mb-4">
       Faith, hope, and love in action every day
     </h1>
     <p className="text-sm md:text-base text-black mb-6 leading-relaxed">
@@ -313,66 +331,64 @@ const Home = ({isVisible}) => {
     {/* Goals Grid */}
     <div className="grid grid-cols-2 gap-4 text-sm md:text-base">
       <div>
-        <div className='flex space-x-2'>
-        <FontAwesomeIcon icon={faPerson} className='text-[#ec3237]' />
-        <p>Share God's Love</p>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPerson} className="text-[#ec3237]" />
+          <p>Share God's Love</p>
         </div>
-       <div className='flex space-x-2'>
-       <FontAwesomeIcon icon={faPerson} className='text-[#ec3237]' />
-       <p>Foster spiritual growth</p>
-       </div>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPerson} className="text-[#ec3237]" />
+          <p>Foster spiritual growth</p>
+        </div>
       </div>
       <div>
-       <div className='flex space-x-2'>
-       <FontAwesomeIcon icon={faPeopleGroup} className='text-[#ec3237]' />
-       <p>Serve our community</p>
-       </div>
-        <div className='flex space-x-2'>
-        <FontAwesomeIcon icon={faPeopleGroup} className='text-[#ec3237]' />
-        <p>Build strong relationships</p>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPeopleGroup} className="text-[#ec3237]" />
+          <p>Serve our community</p>
+        </div>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPeopleGroup} className="text-[#ec3237]" />
+          <p>Build strong relationships</p>
         </div>
       </div>
     </div>
 
     {/* Button */}
-    <NavLink to='/about-us'>
-    <Button
-      variant="contained"
-      sx={{
-        backgroundColor: '#ec3237', // Custom pink color
-        '&:hover': {
-          backgroundColor: '#000', // Darker pink on hover
-        },
-        color: 'white', // Ensures text color is white
-        marginTop: '1rem', // Adds spacing from the grid above
-        borderRadius:'100%'
-      }}
-      aria-label="Contact Us for Consultation"
-    >
-      Read More About Us
-    </Button>
+    <NavLink to="/about-us">
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: '#ec3237', // Custom pink color
+          '&:hover': {
+            backgroundColor: '#000', // Darker pink on hover
+          },
+          color: 'white', // Ensures text color is white
+          marginTop: '1rem', // Adds spacing from the grid above
+          borderRadius: '8px',
+        }}
+        aria-label="Contact Us for Consultation"
+      >
+        Read More About Us
+      </Button>
     </NavLink>
-   
   </div>
 </motion.section>
 
-
         {/* Testimonials Section */}
         <section
-  className="my-5 px-4 ease-linear bg-[#f2a6a8] py-12 md:py-16 lg:py-20 font-Fira"
+  className="my-5 px-4 ease-linear bg-[#ec3237] py-12 md:py-16 lg:py-20 font-Fira"
   aria-labelledby="testimonials-heading"
 >
   {/* Heading */}
   <h2
     id="testimonials-heading"
-    className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 text-[#ec3237]"
+    className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 text-white"
   >
     Worship with us
   </h2>
   <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black text-center uppercase mb-3">
     Join us on Sunday at
   </h1>
-  <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#ec3237] text-center uppercase mb-8">
+  <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center uppercase mb-8">
     8:00 & 9:00 AM
   </p>
 
@@ -497,7 +513,7 @@ const Home = ({isVisible}) => {
         },
         color: 'white',
         marginTop: '1rem',
-        borderRadius: '100%',
+        borderRadius: '8px',
         padding: '0.5rem 1.5rem',
       }}
       aria-label="Contact Us for Consultation"
@@ -517,96 +533,68 @@ const Home = ({isVisible}) => {
   </div>
 </section>
 
-<section className="px-6 py-24 bg-[#f2a6a8] min-h-screen flex flex-col justify-center font-sans">
-      {/* Header Section */}
-      <div className="text-center mb-12">
-        <p className="text-sm md:text-base text-[#ec3237] uppercase tracking-wide font-bold">Online service</p>
-        <h1 className="font-bold text-2xl md:text-4xl text-black leading-snug mt-2">
-          Come and worship with us <span className="text-[#ec3237]">together</span>
-        </h1>
-      </div>
+<section
+  className="px-6 py-24 min-h-screen flex flex-col justify-center font-sans relative overflow-hidden"
+  style={{
+    background: `
+      linear-gradient(45deg, #ec3237 25%, #d42a2f 25%, #d42a2f 75%, #ec3237 75%, #ec3237),
+      linear-gradient(-45deg, #ec3237 25%, #d42a2f 25%, #d42a2f 75%, #ec3237 75%, #ec3237)
+    `,
+    backgroundSize: '60px 60px', // Adjust diamond size here
+    backgroundColor: '#ec3237', // Fallback background color
+  }}
+>
+  {/* Header Section */}
+  <div className="text-center mb-12 relative z-10">
+    <p className="text-sm md:text-base text-white uppercase tracking-wide font-bold">
+      Online service
+    </p>
+    <h1 className="font-bold text-2xl md:text-4xl text-black leading-snug mt-2">
+      Come and worship with us{' '}
+      <span className="text-white">together</span>
+    </h1>
+  </div>
 
-      <div className="relative aspect-w-16 aspect-h-9  aspect-video w-full  max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg" ref={joinRef}>
-  <iframe
-    src="https://www.youtube.com/embed/Xg9CJoD3eYE"
-    title="YouTube Video"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    className="w-full h-full "
-  ></iframe>
-</div>
+  {/* Video Section */}
+  <div
+    className="relative aspect-w-16 aspect-h-9 aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg z-10"
+    ref={joinRef}
+  >
+    <iframe
+      src="https://www.youtube.com/embed/Xg9CJoD3eYE"
+      title="YouTube Video"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+      className="w-full h-full"
+    ></iframe>
+  </div>
 
-      {/* Cards Section */}
-     {/* <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto w-full">
-        {onlines.map((online) => (
-          <div
-            key={online.id}
-            className="relative overflow-hidden rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 aspect-video"
-          >
-            <img
-              src={online.image || "/placeholder.svg"}
-              alt={online.title}
-              className="absolute inset-0 w-full h-full object-cover object-center brightness-75"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-40 text-white p-6 flex flex-col items-center justify-center">
-              <p className="text-2xl font-semibold text-center mb-4">{online.title}</p>
-              {online.video && (
-                <button onClick={() => openVideo(online.video)} className="bg-transparent border-none cursor-pointer">
-                  <FontAwesomeIcon
-                    icon={faPlayCircle}
-                    className="w-32 h-32 text-white opacity-90 hover:opacity-100 transition-all duration-300 hover:scale-110"
-                  />
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>*/}
-
-      {/* Video Modal */}
-     {/* <Modal
-        isOpen={isOpen}
-        onRequestClose={() => setIsOpen(false)}
-        contentLabel="Online Service Video"
-        className="modal"
-        overlayClassName="overlay"
-      >
-        <h2 className="text-2xl font-bold mb-4">Online Service Video</h2>
-        <p className="mb-4">Watch the online service video below.</p>
-        <div className="aspect-video">
-          <iframe
-            width="100%"
-            height="100%"
-            src={currentVideo}
-            title="YouTube video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-        <button
-          onClick={() => setIsOpen(false)}
-          className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-        >
-          Close
-        </button>
-      </Modal>
-*/}
-      
-      <div className="mt-10 font-Fira">
-        <LogoMarquee1 />
-      </div>
-    </section>
-
+  {/* Logo Marquee */}
+  <div className="mt-10 font-Fira relative z-10">
+    <LogoMarquee1 />
+  </div>
+</section>
 
 {/* Red Background Section */}
 <section
       className="px-6 py-10 bg-[#ec3237] text-white text-center font-Fira"
       aria-labelledby="testimonials-heading"
+      style={{
+    clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)', // Curved triangle shape
+    filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.8))',
+    background: `
+      linear-gradient(40deg, #ec3237 25%, #d42a2f 25%, #d42a2f 40%, #ec3237 75%, #ec3237),
+      linear-gradient(-40deg, #ec3237 25%, #d42a2f 25%, #d42a2f 40%, #ec3237 75%, #ec3237)
+    `,
+    backgroundSize: '50px 50px', // Adjust diamond size here
+    backgroundColor: '#ec3237', // Fallback background color
+  }}
+      
     >
       {/* Header Section */}
      <motion.div 
-     className='relative translate-y-16 ease-in duration-100 '>
+     className='relative  ease-in duration-100 '>
      <div className="max-w-3xl mx-auto">
         <p className="text-sm md:text-base uppercase tracking-wide font-semibold">
           Church group
@@ -639,7 +627,7 @@ const Home = ({isVisible}) => {
               <img
                 src={service.image}
                 alt={service.title}
-                className="absolute inset-0 w-full h-full object-cover bg-black opacity-95 rounded-br-[100px] "
+                className="absolute inset-0 w-full h-full object-cover bg-black opacity-95 brightness-105 contrast-125 saturate-110 filter rounded-br-[100px] "
               />
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -672,116 +660,213 @@ const Home = ({isVisible}) => {
   </p>
 </section>
 
-<motion.section className="py-10 px-4 sm:px-8 lg:px-16 bg-gray-50 font-Fira">
-      <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="w-full"
-        >
-          <motion.img
-            src={church1}
-            alt="Night Vigil"
-            className="w-full h-auto rounded-br-[100px] shadow-lg"
-          />
-        </motion.div>
+<motion.section className="py-16 px-8 sm:px-16 lg:px-24 bg-gray-50 font-Fira">
+  <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    <motion.div
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="w-full"
+    >
+      <motion.img
+        src={church1}
+        alt="Night Vigil"
+        className="w-full h-auto rounded-br-[100px] shadow-lg"
+      />
+    </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-6 text-center lg:text-left"
-        >
-          <motion.p className="text-sm uppercase text-[#ec3237] tracking-widest font-bold">Upcoming Event</motion.p>
-          <motion.h2 className="text-3xl font-bold text-gray-800">Church Night {''}
-          <span className='text-[#ec3237]'>Vigil</span></motion.h2>
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="space-y-6 text-center lg:text-left"
+    >
+      <motion.p className="text-sm uppercase text-[#ec3237] tracking-widest font-bold">
+        Upcoming Event
+      </motion.p>
+      <motion.h2 className="text-3xl font-bold text-gray-800">
+        Church Night {''}
+        <span className="text-[#ec3237]">Vigil</span>
+      </motion.h2>
 
-          <motion.div className="flex items-center justify-center lg:justify-start space-x-3">
-            <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#faacaf]">
-              <FontAwesomeIcon icon={faCalendar} className="text-[#ec3237]" />
-            </div>
-            <p className="text-gray-700">Feb 28, 2025 - 9:00 PM to 3:00 AM</p>
-          </motion.div>
-
-          <motion.div className="flex items-center justify-center lg:justify-start space-x-3">
-            <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#faacaf]">
-              <FontAwesomeIcon icon={faMap} className="text-[#ec3237]" />
-            </div>
-            <p className="text-gray-700">St Stephen's Protestant Church</p>
-          </motion.div>
-
-          <motion.p className="text-gray-600">
-            Bring your family, friends, and burdens—God is ready to move!
-          </motion.p>
-        </motion.div>
+      <motion.div className="flex items-center justify-center lg:justify-start space-x-3">
+        <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#faacaf]">
+          <FontAwesomeIcon icon={faCalendar} className="text-[#ec3237]" />
+        </div>
+        <p className="text-gray-700">Feb 28, 2025 - 9:00 PM to 3:00 AM</p>
       </motion.div>
-    </motion.section>
 
-<motion.div
-  className="relative w-full px-6 py-16 bg-gray-900 text-white overflow-hidden"
-  aria-labelledby="Donate now"
->
-  {/* Background Image with Overlay */}
-  <motion.img
-    src={church1}
-    alt="Background"
-    className="absolute inset-0 w-full h-full object-cover brightness-125 z-0 opacity-40"
-  />
+      <motion.div className="flex items-center justify-center lg:justify-start space-x-3">
+        <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#faacaf]">
+          <FontAwesomeIcon icon={faMap} className="text-[#ec3237]" />
+        </div>
+        <p className="text-gray-700">St Stephen's Protestant Church</p>
+      </motion.div>
 
-  {/* Container */}
-  <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 z-10">
-    {/* Video Section */}
-    <motion.video
-      autoPlay
-      muted
-      loop
-      className="w-full h-auto max-h-[400px] md:max-h-[500px] object-cover rounded-lg shadow-lg"
-    >
-      {/* Video content */}
-    </motion.video>
+      <motion.p className="text-gray-600">
+        Bring your family, friends, and burdens—God is ready to move!
+      </motion.p>
+    </motion.div>
+  </motion.div>
+</motion.section>
 
-    {/* Donation Info Section */}
-    <motion.div className="flex justify-center items-center"
-    ref={donateRef}
-   whileHover={{
-    scale: 1.1,
-    transition: { duration: 0.2 }
-  }}
-    >
-      <Paper className="w-full p-8 rounded-xl bg-white/10 backdrop-blur-lg shadow-xl" >
-        <div className="text-center">
-          <p className="text-[#ec3237] text-lg font-bold uppercase tracking-wide">
-            Donate Now
-          </p>
-          <h2 className="text-2xl font-semibold mt-2">Support Our Mission</h2>
-          <p className="text-gray-300 mt-3">
-            Your generous support enables us to continue spreading God’s love and serving our community.
-          </p>
+<motion.section>
+  <motion.div
+    className="relative w-full px-6 py-16 bg-gray-900 text-white overflow-hidden"
+    aria-labelledby="Donate now"
+  >
+    {/* Background Image with Overlay */}
+    <motion.img
+      src={church1}
+      alt="Background"
+      className="absolute inset-0 w-full h-full object-cover brightness-125 z-0 opacity-40"
+    />
 
-          {/* Bank Details */}
-          <div className="mt-6 border-t border-gray-600 pt-6">
-            <p className="text-lg font-semibold text-gray-300">Account Information</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 text-gray-300">
-              <div>
-                <p className="font-medium">Bank Name</p>
-                <p className="text-gray-400">[First Bank]</p>
+    {/* Container */}
+    <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 z-10">
+      {/* Video Section */}
+     
+
+      {/* Donation Info Section */}
+      <motion.div
+        className="flex justify-center items-center"
+        ref={donateRef}
+        whileHover={{
+          scale: 1.05,
+          transition: { duration: 0.2 },
+        }}
+      >
+        <Paper className="w-full p-8 rounded-xl bg-white/10 backdrop-blur-lg shadow-xl border border-white/10">
+          <div className="text-center">
+            {/* Donation Header */}
+            <p className="text-[#ec3237] text-lg font-bold uppercase tracking-wide">
+              Donate Now
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mt-4">
+              Support Our Mission
+            </h2>
+            <p className="text-gray-300 mt-4 text-lg">
+              Your generous support enables us to continue spreading God’s love and serving our community.
+            </p>
+
+            {/* Bank Details */}
+            <div className="mt-8 border-t border-gray-600 pt-8">
+              <p className="text-xl font-bold text-gray-300">Account Information</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 text-gray-300">
+                <div>
+                  <p className="font-semibold">Bank Name</p>
+                  <p className="text-gray-400">[First Bank]</p>
+                </div>
+                <div>
+                  <p className="font-semibold">Account Name</p>
+                  <p className="text-gray-400">[St Stephen's Military Church]</p>
+                </div>
+                <div className="col-span-2">
+                  <p className="font-semibold">Account Number</p>
+                  <p className="text-gray-400">[3031412875]</p>
+                </div>
               </div>
-              <div>
-                <p className="font-medium">Account Name</p>
-                <p className="text-gray-400">[St Stephen's Military Church]</p>
-              </div>
-              <div className="col-span-2">
-                <p className="font-medium">Account Number</p>
-                <p className="text-gray-400">[3031412875]</p>
-              </div>
+            </div>
+
+            {/* Call-to-Action Button */}
+            <div className="mt-8">
+              <Button
+                variant="contained"
+                onClick={bankPopup}
+                sx={{
+                  backgroundColor: '#ec3237',
+                  '&:hover': { backgroundColor: '#c1272d' },
+                  color: 'white',
+                  padding: '12px 24px',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  borderRadius: '8px',
+                  textTransform: 'none',
+                }}
+                aria-label="Donate Now"
+              >
+                Donate Now
+              </Button>
             </div>
           </div>
-        </div>
-      </Paper>
-    </motion.div>
-  </div>
-</motion.div>
+        </Paper>
+      </motion.div>
+    </div>
+     {/* Bank Selection Popup */}
+     {showBank && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Select Your Bank</h3>
+              <div className="space-y-4">
+                <Button
+                  variant="contained"
+                  onClick={() => bankSelection('First Bank')}
+                  sx={{
+                    backgroundColor: '#ec3237',
+                    '&:hover': { backgroundColor: '#c1272d' },
+                    color: 'white',
+                    padding: '12px 24px',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    width: '100%',
+                  }}
+                >
+                  First Bank
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => bankSelection('Uba Bank')}
+                  sx={{
+                    backgroundColor: '#ec3237',
+                    '&:hover': { backgroundColor: '#c1272d' },
+                    color: 'white',
+                    padding: '12px 24px',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    width: '100%',
+                  }}
+                >
+                 Uba Bank
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => bankSelection('Zenith bank')}
+                  sx={{
+                    backgroundColor: '#ec3237',
+                    '&:hover': { backgroundColor: '#c1272d' },
+                    color: 'white',
+                    padding: '12px 24px',
+                    fontSize: '1rem',
+                    fontWeight: 'bold',
+                    borderRadius: '8px',
+                    textTransform: 'none',
+                    width: '100%',
+                  }}
+                >
+                Zenith bank
+                </Button>
+              </div>
+              <Button
+                variant="outlined"
+                onClick={() => setShowBank(false)}
+                sx={{
+                  marginTop: '16px',
+                  color: '#ec3237',
+                  borderColor: '#ec3237',
+                  '&:hover': { borderColor: '#c1272d' },
+                }}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+  </motion.div>
+</motion.section>
 
 
         {/* Newsletter Section */}

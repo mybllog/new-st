@@ -14,10 +14,15 @@ import Retreats from './pages/Retreat';
 // Loader Component
 const Loader = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-[#cc7477] fixed top-0 left-0 w-full z-50">
-      <div className="w-16 h-16 border-4 border-gray-300 border-t-[#ec3237] rounded-full animate-spin"></div>
-      <p className="mt-4 text-lg text-gray-600"></p>
-    </div>
+    <div className="flex flex-col items-center justify-center h-screen  fixed top-0 left-0 w-full z-50">
+    <motion.img
+      src={image1}
+      alt="Loading"
+      className="w-24 h-24"
+      animate={{ rotate: 90 }}
+      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+    />
+  </div>
   );
 };
 
@@ -49,7 +54,7 @@ function App() {
     >
   {loading ? (
         <>
-        <img src={image1} alt='logo' /><Loader />
+      <Loader />
         </>
       ) : (
         <>

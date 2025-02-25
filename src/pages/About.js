@@ -30,10 +30,9 @@ const About = () => {
     //dots: true,
     infinite: true,
     speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    fade:true,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 2000,
   }
 
   const images=[
@@ -98,22 +97,22 @@ const About = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-black text-white text-center font-Fira w-full overflow-hidden">
+      <section className=" text-white text-center font-Fira w-full overflow-hidden">
     <Slider {...settings} className="w-full max-w-[100%]">
       {images.map((item, index) => (
         <article key={index} className="relative w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[30rem]">
-          <img
-            src={item.image}
-            alt={item.alt}
-            className="w-full h-full object-cover brightness-105"
-            loading="lazy"
-          />
+        <img
+  src={item.image}
+  alt={item.alt}
+  className="w-full h-full object-cover brightness-110 contrast-125 saturate-110 filter"
+  loading="lazy"
+/>
           <div
             className="absolute inset-0 flex flex-col justify-center items-center bg-black/50 text-white text-center p-4"
             role="region"
             aria-label={`Slide ${index + 1}`}
           >
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-bold text-white">
               About Us
             </p>
           </div>
@@ -127,44 +126,42 @@ const About = () => {
 
 
       {/* Introduction */}
-      <section
-  className="flex flex-col md:flex-row w-full"
+      <motion.section
+  className="flex flex-col md:flex-row w-full py-16 md:py-20 px-6 md:px-12"
   aria-labelledby="consultation-heading"
 >
   {/* Image Section */}
-  <div className="flex flex-col md:flex-row w-full md:w-1/2 space-y-6 md:space-y-0 relative">
-    <div className="rounded-r-full overflow-hidden w-full md:w-10/12">
+  <motion.div
+    initial={{ x: '-100vw' }}
+    animate={{ x: 0 }}
+    exit={{ x: '100vw' }}
+    transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+    className="flex w-full md:w-1/2 items-center justify-center" // Center the image
+  >
+    <div className="rounded-br-[100px] overflow-hidden w-full md:w-11/12 lg:w-10/12">
       <img
         src={church1}
-        alt="Business consultation for growth"
-        className="w-full h-auto object-cover rounded-e-full"
+        alt="church"
+        className="w-full h-auto object-cover brightness-110 rounded-br-[150px]"
         loading="lazy"
       />
     </div>
-    <div className="absolute top-1/2 left-1/4 transform -translate-y-10 -translate-x-28">
-      <img
-        src={church1}
-        alt="Business consultation for growth"
-        className="w-8/12 md:w-10/12 object-cover rounded-e-full"
-        loading="lazy"
-      />
-    </div>
-  </div>
+  </motion.div>
 
   {/* Text Content Section */}
   <div
-    className="bg-white w-full md:w-1/2 px-6 py-8 md:px-12 md:py-14"
+    className="bg-white w-full md:w-1/2 px-6 py-8 md:px-12 md:py-10 flex flex-col justify-center" // Center text vertically
     role="region"
   >
     <h2
       id="about-us"
-      className="text-2xl md:text-sm font-bold text-[#ec3237] mb-4"
+      className="text-2xl md:text-xl font-bold text-gray-800 mb-4"
     >
       ABOUT US
     </h2>
 
-    <h1 className="font-bold text-4xl  text-black mb-4">
-      Faith, hope, and <span className=' text-[#ec3237]'>love in action every day</span>
+    <h1 className="font-bold text-4xl text-black mb-4">
+      Faith, hope, and love in action every day
     </h1>
     <p className="text-sm md:text-base text-black mb-6 leading-relaxed">
       We are a vibrant community of believers dedicated to worship, fellowship,
@@ -181,31 +178,30 @@ const About = () => {
     {/* Goals Grid */}
     <div className="grid grid-cols-2 gap-4 text-sm md:text-base">
       <div>
-        <div className='flex space-x-2'>
-        <FontAwesomeIcon icon={faPerson} className='text-[#ec3237]' />
-        <p>Share God's Love</p>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPerson} className="text-[#ec3237]" />
+          <p>Share God's Love</p>
         </div>
-       <div className='flex space-x-2'>
-       <FontAwesomeIcon icon={faPerson} className='text-[#ec3237]' />
-       <p>Foster spiritual growth</p>
-       </div>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPerson} className="text-[#ec3237]" />
+          <p>Foster spiritual growth</p>
+        </div>
       </div>
       <div>
-       <div className='flex space-x-2'>
-       <FontAwesomeIcon icon={faPeopleGroup} className='text-[#ec3237]' />
-       <p>Serve our community</p>
-       </div>
-        <div className='flex space-x-2'>
-        <FontAwesomeIcon icon={faPeopleGroup} className='text-[#ec3237]' />
-        <p>Build strong relationships</p>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPeopleGroup} className="text-[#ec3237]" />
+          <p>Serve our community</p>
+        </div>
+        <div className="flex space-x-2">
+          <FontAwesomeIcon icon={faPeopleGroup} className="text-[#ec3237]" />
+          <p>Build strong relationships</p>
         </div>
       </div>
     </div>
 
    
-   
   </div>
-</section>
+</motion.section>
 
       {/* Key Values */}
 
@@ -244,12 +240,20 @@ const About = () => {
 
 {/* Red Background Section */}
 <section
-      className="px-6 py-12 bg-[#f2a6a8] ease-linear"
+      className="px-6 py-12 bg-[#ec3237] ease-linear"
       aria-labelledby="services-heading"
+      style={{
+    background: `
+      linear-gradient(90deg, #ec3237 25%, #d42a2f 15%, #d42a2f 65%, #ec3237 65%, #ec3237),
+      linear-gradient(-90deg, #ec3237 25%, #d42a2f 15%, #d42a2f 65%, #ec3237 65%, #ec3237)
+    `,
+    backgroundSize: '20% 20%', // Adjust diamond size here
+    backgroundColor: '#ec3237', // Fallback background color
+  }}
     >
       {/* Header Section */}
       <div className="text-center mb-12 space-y-4">
-  <p className="text-sm md:text-sm text-[#ec3237] uppercase tracking-widest font-semibold">
+  <p className="text-sm md:text-sm text-white uppercase tracking-widest font-semibold">
     Vision & Mission
   </p>
   
@@ -258,7 +262,7 @@ const About = () => {
     className="font-extrabold text-2xl md:text-4xl text-black leading-snug"
   >
     Building a Faithful Community Through Love,{" "}
-    <span className="text-[#ec3237]">Service, Worship, and Fellowship.</span>
+    <span className="text-white">Service, Worship, and Fellowship.</span>
   </h1>
   
   {/* Centered Tabs Component */}

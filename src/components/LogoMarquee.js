@@ -35,17 +35,29 @@ const LogoMarquee = () => {
   ];
 
   return (
-    <div className="overflow-hidden flex justify-start items-center  bg-[#ec3237] shadow-sm">
-      <div className="flex animate-marquee space-x-6">
-        {logos.map((logo, index) => (
-          <div key={index} className="flex items-center">
-            <p className="text-lg sm:text-xl md:text-2xl  font-bold text-white w-max">
-              {logo.text}
-            </p>
-          </div>
-        ))}
+    <div
+  className="relative border overflow-hidden flex justify-start items-center bg-[#ec3237] shadow-sm"
+  style={{
+    clipPath: 'polygon(0 0, 100% 0, 50% 100%, 0 100%)', // Triangle bottom shape
+    filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.8))',
+  }}
+
+>
+  {/* Marquee Content */}
+  <div className="flex animate-marquee space-x-6"
+  style={{
+    clipPath: 'polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%)', // Triangle bottom shape
+    filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.8))',
+  }}>
+    {logos.map((logo, index) => (
+      <div key={index} className="flex items-center">
+        <p className="text-lg sm:text-xl md:text-2xl font-bold text-white w-max">
+          {logo.text}
+        </p>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
   );
 };
 
