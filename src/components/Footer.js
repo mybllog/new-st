@@ -19,7 +19,7 @@ const interval = setInterval(()=>{
   },[])
 
   return (
-    <footer className="w-full bg-black py-8 text-white font-Fira">
+    <footer className="w-full bg-white py-8 text-white font-Fira">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Left Section */}

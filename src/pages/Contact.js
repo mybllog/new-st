@@ -15,18 +15,21 @@ const Contact = () => {
       icon: call, // Ensure imported correctly
       alt: "Call",
       info: "+234 703 223 9746",
+      link:"tel:+234 703 223 9746"
     },
     {
       id: 2,
       icon: email, // Ensure imported correctly
       alt: "Email",
       info: "st.stephenprotestantchurch@gmail.com",
+      link:'mailto:st.stephenprotestantchurch@gmail.com'
     },
     {
       id: 3,
       icon: map, // Ensure imported correctly
       alt: "Location",
       info: "Nigerian Armed Forces Resettlement Center, Oshodi",
+      link: 'https://maps.google.com',
     },
   ];
   
@@ -43,14 +46,14 @@ const Contact = () => {
 
       {/* Hero Section */}
       <section className="relative w-full h-[300px] md:h-[400px]">
-  <img
+      <img
     src={image1}
-    alt="Contact Manifold Computers"
-    className="w-full h-full object-cover"
+    alt="Hero section - Church Services"
+    className="w-full h-64 md:h-80 object-cover brightness-110"
   />
-  <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white">
-    <h1 className="font-bold text-3xl md:text-4xl">Contact Us</h1>
-  </div>
+  <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center font-bold text-2xl text-white">
+    Contact Us
+  </p>
 </section>
 
 
@@ -108,7 +111,7 @@ const Contact = () => {
 </section>/*}
 
  {/* Call to Action */}
- <section className="my-8 text-[#ec3237]  ">
+ <section className=" text-[#ec3237]  ">
   <p className=" font-poppins text-sm sm:text-base md:text-lg text-center">
     Contact us
   </p>
@@ -136,8 +139,9 @@ const Contact = () => {
             key={contact.id}
             className="h-40 flex flex-col items-center justify-center p-4 rounded-lg shadow-md"
             sx={{
-              background: "linear-gradient(#ec3237, #b99d32)",
+              backgroundColor:'#ec3237'
             }}
+            
           >
             <motion.img
               src={contact.icon}
@@ -150,6 +154,7 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               drag="x"
               dragConstraints={{ left: -100, right: 100 }}
+              onClick={() => window.open(contact.link, '_self')}
             />
             <p className="text-xs font-medium text-white text-center">
               {contact.info}

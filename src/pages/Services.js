@@ -52,9 +52,9 @@ const Services = () => {
   
 
   const events= [
-    { id:1,title: "Baptismal class", image: baptism, alt:'Baptismal Class Commences',  description:'Feb 17 2025', link:null},
-    {id:2, title: "Night Vigil", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3QBTalK_4ThiCAIxkLW1SRnnERl3sVyDhnw&s',alt:'Church Night Vigil', description:'feb 28 2025',link:null},
-    {id:3, title: "Agency Leaders, Elders and Church Worker Retreat", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh09-72d4Nvm8iorRhxuR8NQPZvfTgHb54eQ&s', alt:'Agency Leaders, Elders and Church Worker Retreat', description:'28 Feb – 1 Mar 2025',link:'/retreat'},
+    { id:1,title: "Baptismal class", image: baptism, alt:'Baptismal Class Commences',  description:'Feb 17 2025', link:null, times:'4pm-6pm'},
+    {id:2, title: "Night Vigil", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3QBTalK_4ThiCAIxkLW1SRnnERl3sVyDhnw&s',alt:'Church Night Vigil', description:'feb 28 2025',link:null,times:'9pm-2am'},
+    {id:3, title: "Agency Leaders, Elders and Church Worker Retreat", image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh09-72d4Nvm8iorRhxuR8NQPZvfTgHb54eQ&s', alt:'Agency Leaders, Elders and Church Worker Retreat', description:'28 Feb – 1 Mar 2025',link:'/retreat',times:'5pm-6pm & 10am-4pm'},
   ];
   
   //const handleTextToggle = (id) => {
@@ -192,9 +192,12 @@ const Services = () => {
           </p>
 
           {/* Call to Action */}
+          <NavLink to='/contact-us'>
           <Button variant="contained" color="primary" sx={{backgroundColor:'#ec3237'}} aria-label="Contact us">
             Contact Us
           </Button>
+          </NavLink>
+          
         </div>
       </Paper>
     </motion.div>
@@ -206,6 +209,14 @@ const Services = () => {
     <section
   className="px-6 py-16 bg-[#ec3237] text-white text-center"
   aria-labelledby="events-heading"
+  style={{
+    background: `
+      linear-gradient(25deg, #ec3237 25%, #d42a2f 15%, #d42a2f 75%, #ec3237 65%, #ec3237),
+      linear-gradient(-25deg, #ec3237 25%, #d42a2f 15%, #d42a2f 75%, #ec3237 65%, #ec3237)
+    `,
+    backgroundSize: '40px 40px', // Adjust diamond size here
+    backgroundColor: '#ec3237', // Fallback background color
+  }}
 >
   {/* Header Section */}
   <div className="max-w-3xl mx-auto">
@@ -221,7 +232,85 @@ const Services = () => {
   </div>
 
   {/* Events Grid */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-16">
+  {events.map((event, id) => (
+    <motion.div
+      key={id}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, delay: id * 0.2, ease: "easeOut" }}
+    >
+      <div
+        className="group relative cursor-pointer"
+        onMouseEnter={() => setActiveText(event.id)}
+        onMouseLeave={() => setActiveText(null)}
+        onFocus={() => setActiveText(event.id)}
+        onBlur={() => setActiveText(null)}
+        tabIndex={0}
+        role="button"
+        aria-label={`View details about ${event.title}`}
+      >
+        {event ? (
+          <NavLink to={event.link}>
+            <Paper
+              className="relative rounded-br-[200px] overflow-hidden shadow-lg"
+              sx={{
+                backgroundColor: "#fff",
+                height: "auto",
+                minHeight: "300px",
+                boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
+              }}
+            >
+              {/* Image */}
+              <img
+                src={event.image}
+                alt={event.alt}
+                className="absolute inset-0 w-full h-full rounded-br-[200px] object-cover"
+              />
+
+             
+            </Paper>
+             {/* Text Overlay */}
+             <motion.div
+                className=" bottom-0 left-0 right-0 brightness-70 text-white flex flex-col justify-center items-center transition-opacity duration-300"
+              >
+                <h3 className="text-lg font-bold mb-2">{event.title}</h3>
+                <p className="text-sm text-center px-4">{event.description}</p>
+                <p className="text-sm text-center px-4">{event.times}</p>
+              </motion.div>
+          </NavLink>
+        ) : (
+          <Paper
+            className="relative rounded-br-[200px] overflow-hidden shadow-lg"
+            sx={{
+              backgroundColor: "#fff",
+              height: "auto",
+              minHeight: "300px",
+              boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.15)",
+            }}
+          >
+            {/* Image */}
+            <img
+              src={event.image}
+              alt={event.alt}
+              className="w-full h-full rounded-br-[200px] object-cover"
+            />
+
+            {/* Text Overlay */}
+            <motion.div
+              className="absolute inset-0 bg-black bg-opacity-70 text-white flex flex-col justify-center items-center"
+            >
+              <h3 className="text-lg font-bold mb-8">{event.title}</h3>
+              <p className="text-sm text-center px-4">{event.description}</p>
+              <p className="text-sm text-center px-4">{event.times}</p>
+            </motion.div>
+          </Paper>
+        )}
+      </div>
+    </motion.div>
+  ))}
+</div>
+ {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  mt-16">
     {events.map((event, id) => (
       <motion.div
         key={id}
@@ -257,7 +346,16 @@ const Services = () => {
               className="absolute inset-0 w-full h-full rounded-br-[200px] object-cover"
             />
 
-            <motion.div
+          <motion.div
+              className={` bg-black bg-opacity-70 text-white flex flex-col justify-center items-center transition-opacity duration-300 `}
+            >
+              <h3 className="text-lg font-bold mb-2">{event.title}</h3>
+            
+                <p className="text-sm text-center px-4">{event.description}</p>
+            
+            </motion.div>
+
+          <motion.div
               className={`absolute inset-0 bg-black bg-opacity-70 text-white flex flex-col justify-center items-center transition-opacity duration-300 ${
                 activeText === event.id
                   ? "opacity-100"
@@ -285,20 +383,16 @@ const Services = () => {
             <img
               src={event.image}
               alt={event.alt}
-              className="absolute inset-0 w-full h-full rounded-br-[200px] object-cover"
+              className="w-full h-full rounded-br-[200px] object-cover"
             />
 
             <motion.div
-              className={`absolute inset-0 bg-black bg-opacity-70 text-white flex flex-col justify-center items-center transition-opacity duration-300 ${
-                activeText === event.id
-                  ? "opacity-100"
-                  : "opacity-0 group-hover:opacity-100"
-              }`}
+              className=" bg-black bg-opacity-70 text-black flex flex-col justify-center items-center "
             >
-              <h3 className="text-lg font-bold mb-2">{event.title}</h3>
-              {activeText === event.id && (
+              <h3 className="text-lg font-bold mb-8">{event.title}</h3>
+             
                 <p className="text-sm text-center px-4">{event.description}</p>
-              )}
+         
             </motion.div>
           </Paper>
         )}
@@ -306,7 +400,7 @@ const Services = () => {
         </div>
       </motion.div>
     ))}
-  </div>
+  </div>*/}
 </section>
 
     </div>
