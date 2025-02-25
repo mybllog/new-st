@@ -41,7 +41,12 @@ const Navbar = () => {
             <header className={`w-screen fixed top-0 z-20 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
                 <nav className="max-w-7xl mx-auto px-4 md:px-1 py-2 flex gap-[6.19%] items-center">
                     <div className="flex flex-shrink-0 w-[11.48vw] mr-[19.10vw] pl-3">
-                        <img src={currentLogo} alt="logo" className="h-16 transition-all  duration-500 ease-in-out transform scale-110 opacity-100"/>
+                    <img 
+  src={currentLogo} 
+  alt="logo" 
+  className="h-16 md:h-20 lg:h-24 w-auto transition-all duration-500 ease-in-out transform scale-110 opacity-100 max-w-full"
+/>
+
                         
                     </div>
                     <div className={`hidden lg:flex md:flex xl:flex gap-8 justify-end float-end relative md:right-16 lg:left-28 xl:left-28 ${isScrolled ? 'text-black' : 'text-white'}`}>

@@ -196,7 +196,7 @@ const Home = ({isVisible}) => {
               role="region"
               aria-label={`Slide ${index + 1}`}
             >
-              <p className="text-base sm:text-lg md:text-2xl font-bold mb-2 text-[#ec3237]">
+              <p className="text-sm sm:text-lg md:text-2xl font-bold mb-2 text-[#ec3237]">
                 {Currentscripture.title}
               </p>
               <h1 className="text-lg sm:text-2xl md:text-5xl font-bold">
@@ -359,20 +359,20 @@ const Home = ({isVisible}) => {
 
         {/* Testimonials Section */}
         <section
-  className="my-5 px-4  ease-linear  bg-[#f2a6a8] py-12 md:py-10 font-Fira"
+  className="my-5 px-4 ease-linear bg-[#f2a6a8] py-12 md:py-16 lg:py-20 font-Fira"
   aria-labelledby="testimonials-heading"
 >
   {/* Heading */}
   <h2
     id="testimonials-heading"
-    className="text-lg md:text-xl font-bold text-center mb-6 text-[#ec3237]"
+    className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 text-[#ec3237]"
   >
     Worship with us
   </h2>
-  <h1 className="text-2xl md:text-3xl font-bold text-black text-center uppercase mb-4">
+  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black text-center uppercase mb-3">
     Join us on Sunday at
   </h1>
-  <p className="text-2xl md:text-3xl font-bold text-[#ec3237] text-center uppercase mb-8">
+  <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#ec3237] text-center uppercase mb-8">
     8:00 & 9:00 AM
   </p>
 
@@ -380,77 +380,62 @@ const Home = ({isVisible}) => {
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
     {/* Full Image */}
     <div className="relative flex flex-col items-center">
-  {/* Altar Image */}
-  <img
-    src={youth}
-    alt="Altar"
-    className="bg-cover w-full md:w-12/12 max-w-[600px] brightness-125 rounded-br-[100px]"
-  />
+      <img
+        src={youth}
+        alt="Altar"
+        className="w-full md:w-11/12 max-w-[600px] brightness-125 rounded-br-[80px] md:rounded-br-[100px]"
+      />
 
-  {/* Overlay Content */}
-  <div className="absolute   top-72 w-11/12 md:w-12/12 max-w-[500px] bg-white px-6 py-4 rounded-br-[60px] shadow-lg text-center">
-    <h1 className="font-bold text-lg md:text-2xl text-gray-800">Youth Worship</h1>
-    <p className="text-sm md:text-base text-gray-600">
-      Engaging teens in faith, fellowship, growth.
-    </p>
-  </div>
-</div>
-
+      {/* Overlay Content */}
+      <div className="absolute top-2/3 md:top-3/4 w-11/12 md:w-10/12 max-w-[500px] bg-white px-6 py-4 rounded-br-[40px] md:rounded-br-[60px] shadow-lg text-center">
+        <h1 className="font-bold text-lg md:text-2xl text-gray-800">
+          Youth Worship
+        </h1>
+        <p className="text-sm md:text-base text-gray-600">
+          Engaging teens in faith, fellowship, and growth.
+        </p>
+      </div>
+    </div>
 
     {/* Worship Sections */}
-    <motion.div 
-    initial={{ scale: 0 }}
+    <motion.div
+      initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       exit={{ scale: 0 }}
       transition={{ duration: 1.5 }}
-    className="space-y-8">
-      {/* Children's Worship */}
-      <div className="flex items-start space-x-4">
-        <img
-          src={Altar}
-          alt="Children's Worship"
-          className="bg-cover w-6/12 max-w-[160px] brightness-125 rounded-br-[50px]"
-        />
-        <div>
-          <p className="text-lg font-semibold">Children's Worship</p>
-          <p className="text-sm md:text-base text-gray-800">
-            Fun, faith-filled worship for kids ages 4-12.
-          </p>
+      className="space-y-6 md:space-y-8"
+    >
+      {/* Worship Items */}
+      {[
+        {
+          title: "Children's Worship",
+          desc: "Fun, faith-filled worship for kids ages 4-12.",
+        },
+        {
+          title: "Sunday School Worship",
+          desc: "Learning and worship for all ages.",
+        },
+        {
+          title: "Children's Worship",
+          desc: "Fun, faith-filled worship for kids ages 4-12.",
+        },
+      ].map((item, index) => (
+        <div key={index} className="flex items-start space-x-4">
+          <img
+            src={Altar}
+            alt={item.title}
+            className="w-5/12 sm:w-4/12 md:w-3/12 max-w-[160px] brightness-125 rounded-br-[40px] md:rounded-br-[50px]"
+          />
+          <div>
+            <p className="text-lg md:text-xl font-semibold">{item.title}</p>
+            <p className="text-sm md:text-base text-gray-800">{item.desc}</p>
+          </div>
         </div>
-      </div>
-
-      {/* Sunday School Worship */}
-      <div className="flex items-start space-x-4">
-        <img
-          src={Altar}
-          alt="Sunday School Worship"
-          className="bg-cover w-6/12 max-w-[160px] brightness-125 rounded-br-[50px]"
-        />
-        <div>
-          <p className="text-lg font-semibold">Sunday School Worship</p>
-          <p className="text-sm md:text-base text-gray-800">
-            Learning and worship for all ages.
-          </p>
-        </div>
-      </div>
-
-      {/* Additional Children's Worship */}
-      <div className="flex items-start space-x-4">
-        <img
-          src={Altar}
-          alt="Children's Worship"
-          className="bg-cover w-6/12 max-w-[160px] brightness-125 rounded-br-[50px]"
-        />
-        <div>
-          <p className="text-lg font-semibold">Children's Worship</p>
-          <p className="text-sm md:text-base text-gray-800">
-            Fun, faith-filled worship for kids ages 4-12.
-          </p>
-        </div>
-      </div>
+      ))}
     </motion.div>
   </div>
 </section>
+
 
 {/*<section className='border w-11/12 mx-auto px-4 sm:px-6 h-auto bg-[#ec3237] rounded-br-full py-8 sm:py-10'>
   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
