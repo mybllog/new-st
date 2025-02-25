@@ -25,7 +25,12 @@ const interval = setInterval(()=>{
           {/* Left Section */}
           <div className="flex flex-col space-y-6">
           <div className=' flex'>
-            <img src={currentLogo} alt='logo' className='h-16 transition-all  duration-500 ease-in-out transform scale-110 opacity-100'/>
+          <img 
+  src={currentLogo} 
+  alt="logo" 
+  className="h-16 md:h-20 lg:h-24 w-auto transition-all duration-500 ease-in-out transform scale-110 opacity-100 max-w-full"
+/>
+
           </div>
             <p className="text-base text-gray-400 leading-6 break-words">
               Build a firm digital foundation
