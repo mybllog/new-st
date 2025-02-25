@@ -196,7 +196,7 @@ const Home = ({isVisible}) => {
               role="region"
               aria-label={`Slide ${index + 1}`}
             >
-              <p className="text-sm sm:text-lg md:text-2xl font-bold mb-4 md:mb-2 text-[#ec3237]">
+              <p className="text-sm sm:text-lg md:text-2xl font-bold mb-2 my-4 text-[#ec3237]">
                 {Currentscripture.title}
               </p>
               <h1 className="text-lg sm:text-2xl md:text-5xl font-bold">
