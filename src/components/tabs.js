@@ -80,6 +80,8 @@ export default function CenteredTabs() {
   <Tabs
     value={value}
     onChange={handleChange}
+    visibleScrollbar
+    variant="scrollable"
     centered
     textColor="black"
     indicatorColor="primary"
