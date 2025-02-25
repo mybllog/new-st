@@ -1,0 +1,29 @@
+/* Target the carousel arrows using class names */
+.carousel .control-arrow {
+    color: black;
+    padding: 1rem;
+    border-radius: 50%;
+    opacity: 0.8;
+  }
+  
+  .carousel .control-arrow:hover {
+    background-color: #3b82f6; /* Tailwind blue-500 */
+    opacity: 1;
+  }
+  
+  .carousel .control-prev, .carousel .control-next {
+    color: black;
+  }
+  
+  .carousel .control-prev:hover, .carousel .control-next:hover {
+    color: #f59e0b; /* Tailwind yellow-500 */
+    transform: scale(1.2); /* Slightly scale the arrows */
+  }
+  
+
+  .Carousel .showArrows{
+    color: black;
+    padding: 1rem;
+    border-radius: 50%;
+    opacity: 0.8;
+  }
