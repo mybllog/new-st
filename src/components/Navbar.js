@@ -38,23 +38,23 @@ const Navbar = () => {
 
     return (
         <div className="font-Fira">
-            <header className={`w-screen fixed top-0 z-20 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
+            <header className={`w-screen fixed top-0 z-20 transition-all duration-300 ${isScrolled ? 'bg-black shadow-lg' : 'bg-transparent'}`}>
                 <nav className="max-w-7xl mx-auto px-4 md:px-1 py-2 flex gap-[6.19%] items-center">
                     <div className="flex flex-shrink-0 w-[11.48vw] mr-[19.10vw] pl-3">
                         <img src={currentLogo} alt="logo" className="h-10 md:h-16 transition-all  duration-500 ease-in-out transform scale-110 opacity-100"/>
                         
                     </div>
-                    <div className={`hidden lg:flex md:flex xl:flex gap-8 justify-end float-end relative md:right-16 lg:left-28 xl:left-28 ${isScrolled ? 'text-black' : 'text-white'}`}>
-                        <a href="/" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-black' : 'text-white'}`}>
+                    <div className={`hidden lg:flex md:flex xl:flex gap-8 justify-end float-end relative md:right-16 lg:left-28 xl:left-28 ${isScrolled ? 'text-white' : 'text-gray-400'}`}>
+                        <a href="/" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-white' : 'text-gray-400'}`}>
                             Home
                         </a>
-                        <a href="/about-us" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-black' : 'text-white'}`}>
+                        <a href="/about-us" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-white' : 'text-gray-400'}`}>
                             About Us
                         </a>
-                        <a href="/services" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-black' : 'text-white'}`}>
+                        <a href="/services" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-white' : 'text-gray-400'}`}>
                             Services
                         </a>
-                        <a href="/contact-us" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-black' : 'text-white'}`}>
+                        <a href="/contact-us" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-white' : 'text-gray-400'}`}>
                             Contact Us
                         </a>
                     </div>
