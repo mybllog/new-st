@@ -24,6 +24,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import {
+  faArrowCircleDown,
   faCalendar,
  faMap,
  faPeopleGroup,
@@ -84,6 +85,12 @@ const Home = ({isVisible}) => {
     autoplay: true,
     autoplaySpeed: 1000,
   };*/
+  const scrollToLast = () =>{
+    const lastItem = document.getElementById('last-item')
+    if(lastItem){
+      lastItem.scrollIntoView({behavior:'smooth'})
+    }
+  }
  const joinRef = useRef(null)
 
  const scrollToJoin = () =>{
@@ -116,7 +123,7 @@ const Home = ({isVisible}) => {
   const scriptures =[
     {
       id:1,
-      title: 'make a difference today',
+      title: 'Make a difference today',
       description:'Loving God, loving other and serving the world !',
       text3:'Experience God’s love and grace in a welcoming community where faith grows, hope thrives, and everyone is cherished.',
 
@@ -234,8 +241,9 @@ const Home = ({isVisible}) => {
 
              </div>
               <div className="flex flex-wrap justify-center gap-4">
-              
+              {/* Main screen button*/}
                   <Button
+                  className="hidden md:block"
                     variant="contained"
                     onClick={scrollToJoin}
                     sx={{
@@ -243,6 +251,8 @@ const Home = ({isVisible}) => {
                       '&:hover': { backgroundColor: '#c1272d' },
                       color: 'white',
                       borderRadius: '8px',
+                      display: { xs: 'none', md: 'block' },
+                      
                      
                     }}
                     aria-label="Contact Us for Consultation"
@@ -250,8 +260,28 @@ const Home = ({isVisible}) => {
                     {item.text4}
                   </Button>
         
+                    {/*Mobile button */}
 
-             
+                    <Button
+  className="sm:hidden md:hidden lg:hidden xl:hidden"
+  variant="contained"
+  onClick={scrollToJoin}
+  sx={{
+    backgroundColor: '#ec3237',
+    '&:hover': { backgroundColor: '#c1272d' },
+    color: 'white',
+    borderRadius: '8px',
+    display: { xs: 'block', md: 'none' }, // Visible on mobile, hidden on larger screens
+    padding: '4px 8px', // Smaller padding
+    fontSize: '0.75rem', // Smaller font size
+    minWidth: 'auto', // Remove minimum width
+  }}
+  aria-label="Contact Us for Consultation"
+>
+  <p className="text-xs">{item.text4}</p>
+</Button>
+        
+             {/* main screen */}
                   <Button
                     variant="contained"
                     onClick={scrollDonate}
@@ -260,17 +290,45 @@ const Home = ({isVisible}) => {
                       '&:hover': { backgroundColor: '#f3f3f3' },
                       color: '#ec3237',
                       borderRadius: '8px',
-    
+                      display: { xs: 'none', md: 'block' },
                     }}
                     aria-label="Learn More"
                   >
                     {item.text5}
                   </Button>
-               
+
+                  {/* mobile button */}
+                  <Button
+                    variant="contained"
+                    onClick={scrollDonate}
+                    sx={{
+                      backgroundColor: 'white',
+                      '&:hover': { backgroundColor: '#f3f3f3' },
+                      color: '#ec3237',
+                      borderRadius: '8px',
+                      display: { xs: 'block', md: 'none' }, // Visible on mobile, hidden on larger screens
+    padding: '4px 8px', // Smaller padding
+    fontSize: '0.75rem', // Smaller font size
+    minWidth: 'auto', // Remove minimum width
+                    }}
+                    aria-label="Learn More"
+                  >
+                    {item.text5}
+                  </Button>
               </div>
+              <div
+        className="flex relative top-5 sm:top-40 justify-center mt-8   cursor-pointer animate-bounce"
+        onClick={scrollToLast}
+        aria-label="Scroll to last item"
+      >
+        <FontAwesomeIcon icon={faArrowCircleDown} className=" text-xl sm:text-4xl text-[#ec3237]" />
+      </div>
             </div>
+          
           )}
+        
         </article>
+        
       ))}
 
       <LogoMarquee />
@@ -308,13 +366,13 @@ const Home = ({isVisible}) => {
   >
     <h2
       id="about-us"
-      className="text-2xl md:text-xl font-bold text-gray-800 mb-4"
+      className="text-base md:text-xl font-bold text-[#ec3237] mb-4"
     >
       ABOUT US
     </h2>
 
-    <h1 className="font-bold text-4xl text-black mb-4">
-      Faith, hope, and love in action every day
+    <h1 className="font-bold text-2xl sm:text-4xl text-black mb-4">
+      Faith, Hope, and Love in Action everyday
     </h1>
     <p className="text-sm md:text-base text-black mb-6 leading-relaxed">
       We are a vibrant community of believers dedicated to worship, fellowship,
@@ -354,6 +412,7 @@ const Home = ({isVisible}) => {
 
     {/* Button */}
     <NavLink to="/about-us">
+      {/*main screen button*/}
       <Button
         variant="contained"
         sx={{
@@ -364,6 +423,28 @@ const Home = ({isVisible}) => {
           color: 'white', // Ensures text color is white
           marginTop: '1rem', // Adds spacing from the grid above
           borderRadius: '8px',
+          display: { xs: 'none', md: 'block' },
+        }}
+        aria-label="Contact Us for Consultation"
+      >
+        Read More About Us
+      </Button>
+
+      {/*mobile screen button */}
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: '#ec3237', // Custom pink color
+          '&:hover': {
+            backgroundColor: '#000', // Darker pink on hover
+          },
+          color: 'white', // Ensures text color is white
+          marginTop: '1rem', // Adds spacing from the grid above
+          borderRadius: '8px',
+          display: { xs: 'block', md: 'none' }, // Visible on mobile, hidden on larger screens
+    padding: '4px 8px', // Smaller padding
+    fontSize: '0.55rem', // Smaller font size
+    minWidth: 'auto', // Remove minimum width
         }}
         aria-label="Contact Us for Consultation"
       >
@@ -578,16 +659,16 @@ const Home = ({isVisible}) => {
 
 {/* Red Background Section */}
 <section
-      className="px-6 py-10 bg-[#ec3237] text-white text-center font-Fira"
+      className=" px-3 py-5 md:px-6 md:py-10 bg-[#ec3237] text-white text-center font-Fira"
       aria-labelledby="testimonials-heading"
       style={{
     clipPath: 'polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)', // Curved triangle shape
     filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.8))',
     background: `
-      linear-gradient(40deg, #ec3237 25%, #d42a2f 25%, #d42a2f 40%, #ec3237 75%, #ec3237),
-      linear-gradient(-40deg, #ec3237 25%, #d42a2f 25%, #d42a2f 40%, #ec3237 75%, #ec3237)
+      linear-gradient(90deg, #ec3237 25%, #d42a2f 25%, #d42a2f 40%, #ec3237 75%, #ec3237),
+      linear-gradient(-90deg, #ec3237 25%, #d42a2f 25%, #d42a2f 40%, #ec3237 75%, #ec3237)
     `,
-    backgroundSize: '50px 50px', // Adjust diamond size here
+    backgroundSize: '10px 5px', // Adjust diamond size here
     backgroundColor: '#ec3237', // Fallback background color
   }}
       
@@ -750,9 +831,9 @@ const Home = ({isVisible}) => {
             </p>
 
             {/* Bank Details */}
-            <div className="mt-8 border-t border-gray-600 pt-8">
+            <div className="hidden md:block sm:block lg:block xl:block mt-8 border-t border-gray-600 pt-8">
               <p className="text-xl font-bold text-gray-300">Account Information</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 text-gray-300">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 text-gray-300">
                 <div>
                   <p className="font-semibold">Bank Name</p>
                   <p className="text-gray-400">[First Bank]</p>
@@ -768,6 +849,24 @@ const Home = ({isVisible}) => {
               </div>
             </div>
 
+             {/* Bank Details mobile */}
+            <div className="sm:hidden md:hidden lg:hidden xl:hidden mt-8 border-t border-gray-600 pt-8">
+              <p className="text-xl font-bold text-gray-300">Account Information</p>
+              <div className="grid grid-cols-2 gap-6 mt-6 text-gray-300">
+                <div className="col-span-2">
+                  <p className="font-semibold">Bank Name</p>
+                  <p className="text-gray-400">[First Bank]</p>
+                </div>
+                <div className="col-span-2">
+                  <p className="font-semibold">Account Name</p>
+                  <p className="text-gray-400">[St Stephen's Military Church]</p>
+                </div>
+                <div className="col-span-2">
+                  <p className="font-semibold">Account Number</p>
+                  <p className="text-gray-400">[3031412875]</p>
+                </div>
+              </div>
+            </div>
             {/* Call-to-Action Button */}
             <div className="mt-8">
               <Button
