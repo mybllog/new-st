@@ -42,7 +42,8 @@ const Navbar = () => {
                 <nav className="max-w-7xl mx-auto px-4 md:px-1 py-2 flex gap-[6.19%] items-center">
                     <div className="flex flex-shrink-0 w-[11.48vw] mr-[19.10vw] pl-3">
                         <img src={currentLogo} alt="logo" className="h-10 md:h-16 transition-all  duration-500 ease-in-out transform scale-110 opacity-100"/>
-                        
+                        <p className='hidden md:block md:text-sm text-[#ec3237] font-bold'>ST.STEPHEN'S PROTESTANT CHURCH</p>
+                        <p className=' md:hidden  text-[8px] text-[#ec3237] font-bold'>ST.STEPHEN'S PROTESTANT CHURCH</p>
                     </div>
                     <div className={`hidden lg:flex md:flex xl:flex gap-8 justify-end float-end relative md:right-16 lg:left-28 xl:left-28 ${isScrolled ? 'text-gray-400' : 'text-white'}`}>
                         <a href="/" className={`hover:text-[#ec3237] transition-colors text-base text-center font-bold not-italic ${isScrolled ? 'text-gray-400' : 'text-white'}`}>
